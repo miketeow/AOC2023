@@ -1,15 +1,6 @@
-const fs = require("fs").promises;
-const filePath = "input.txt";
-async function readLines(filePath) {
-  try {
-    const data = await fs.readFile(filePath, "utf8");
-    const lines = data.split("\n");
+import readLines from "../readFile.js";
 
-    return lines;
-  } catch (error) {
-    console.error("Error reading file " + filePath);
-  }
-}
+const filePath = "sample.txt";
 
 function getFirstDigit(str) {
   const regex = /one|two|three|four|five|six|seven|eight|nine|[1-9]/;
@@ -57,8 +48,8 @@ function convertWordsToDigits(wordArray, reverse) {
   return convertedArray;
 }
 
-const final = () =>
-  readLines(filePath).then((lines) => {
+const main = async () =>
+  await readLines(filePath).then((lines) => {
     let result = 0;
     let allDigits = 0;
     let firstDigit = 0;
@@ -74,4 +65,4 @@ const final = () =>
     console.log(result);
   });
 
-final();
+main();
